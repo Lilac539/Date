@@ -33,6 +33,6 @@ public class Main {
         else{
             System.out.println("Рік не високосний");
         }
-
+        System.out.println(DateToInt);
     }
 }
