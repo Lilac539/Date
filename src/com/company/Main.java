@@ -9,29 +9,17 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input the date in format dd.mm.yyyy");
+        System.out.println("If you want to know what was the day - input the date in format dd.mm.yyyy");
         String userdate = scanner.next();
-        int [] DateToInt = new int[3];
-        int idOfMass = 3;
-        Pattern pattern = Pattern.compile("\\d+");
-        Matcher matcher = pattern.matcher(userdate);
-        int start = 0;
-        while (matcher.find(start)) {
-            String value = userdate.substring(matcher.start(), matcher.end());
-            int result = Integer.parseInt(value);
-            DateToInt[DateToInt.length - idOfMass]= result;
-            start = matcher.end();
-            idOfMass--;
-        }
+        ShoZaDen date = new ShoZaDen();
+        date.FindTheDay(userdate);
 
-        Calendar calendar = new GregorianCalendar(DateToInt[2], DateToInt[1] - 1,DateToInt[0]);
-        SimpleDateFormat dateformat = new SimpleDateFormat("EEEE, d MMMM yyyy");
-        System.out.println(dateformat.format(calendar.getTime()));
-        if(((GregorianCalendar) calendar).isLeapYear(DateToInt[2])){
-            System.out.println("Рік високосний");
-        }
-        else{
-            System.out.println("Рік не високосний");
-        }
+        System.out.println("If you want to know was that a LeapYear - input only the number of year");
+        userdate = scanner.next();
+        date.FindLeapYear(userdate);
+
+        System.out.println("If you want to know what was the month - input the date in format dd.mm.yyyy");
+        userdate = scanner.next();
+        date.FindTheMonth(userdate);
     }
 }
